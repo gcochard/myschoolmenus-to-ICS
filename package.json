@@ -1,0 +1,23 @@
+{
+  "name": "menucalendar",
+  "version": "1.0.0",
+  "description": "An ICS web service that accepts a school ID & returns an ICS calendar document from the Mealviewer.com API",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Jeffery Bennett <me@meandmybadself.com>",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.7",
+    "express": "^4.18.3",
+    "ical": "^0.8.0",
+    "ical-generator": "^6.0.1",
+    "parser": "^0.1.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
