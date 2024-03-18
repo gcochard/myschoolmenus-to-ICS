@@ -4,8 +4,9 @@
   "description": "An ICS web service that accepts a school ID & returns an ICS calendar document from the Mealviewer.com API",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts"
   },
   "keywords": [],
   "author": "Jeffery Bennett <me@meandmybadself.com>",
@@ -13,11 +14,15 @@
   "dependencies": {
     "axios": "^1.6.7",
     "express": "^4.18.3",
-    "ical": "^0.8.0",
     "ical-generator": "^6.0.1",
     "parser": "^0.1.4"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "@types/axios": "^0.14.0",
+    "@types/express": "^4.17.21",
+    "@types/node": "*",
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2"
   }
 }
