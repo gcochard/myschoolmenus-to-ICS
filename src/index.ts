@@ -1,30 +1,32 @@
-import { Request, Response } from "express";
-import { parseMenuAndGenerateIcs } from "./parse-menu";
-import express from 'express';
+import { parseMenuAndGenerateIcs } from './parse-menu';
 
-const app = express();
+/**
+ * Generate iCal data based on MealViewer API response.
+ * @param {Request} request The incoming request.
+ */
 
-app.get(['/:schoolId', '/:schoolId/:meal', '/'], async (req: Request, res: Response) => {
-    try {
-        const schoolId = req.params.schoolId || "EisenhowerElementaryMN";
-        const meal = (req.params.meal || "Lunch") as 'Lunch' | 'Breakfast';
-        const icsData = await parseMenuAndGenerateIcs(schoolId, meal);
+export default {
+    // async fetch(request: Request, env: any, ctx: any) {
+    async fetch() {
+        const schoolId = "EisenhowerElementaryMN";
+        const meal = "Lunch";
 
-        if (icsData.length === 0) {
-            res.status(404).send("No meals found for the specified date range.");
-        } else {
-            res.setHeader('Content-Type', 'text/calendar; charset=utf-8');
-            res.setHeader('Content-Disposition', `attachment; filename=${schoolId}-${meal}-menu.ics`);
-            res.send(icsData);
+        try {
+            const icalData = await parseMenuAndGenerateIcs(schoolId, meal);
+
+            if (icalData.length === 0) {
+                return new Response("No meals found for the specified date range.", { status: 404 });
+            } else {
+                return new Response(icalData, {
+                    headers: {
+                        'Content-Type': 'text/calendar; charset=utf-8',
+                        'Content-Disposition': `attachment; filename=${schoolId}-${meal}-menu.ics`,
+                    },
+                });
+            }
+        } catch (error) {
+            console.error("Error generating ICS file:", error);
+            return new Response("Error generating ICS data.", { status: 500 });
         }
-    } catch (error) {
-        console.error("Error generating ICS file:", error);
-        res.status(500).send("Error generating ICS data.");
     }
-});
-
-const {PORT} = process.env || 3000;
-
-// app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
-
-parseMenuAndGenerateIcs('EisenhowerElementaryMN', 'Lunch')
+}
