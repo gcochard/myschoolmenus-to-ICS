@@ -1,9 +1,11 @@
-import { parseMenuAndGenerateIcs } from './parse-menu';
 
 /**
  * Generate iCal data based on MealViewer API response.
  * @param {Request} request The incoming request.
  */
+
+
+import { parseMenuAndGenerateIcs } from './parse-menu';
 
 export default {
     // async fetch(request: Request, env: any, ctx: any) {

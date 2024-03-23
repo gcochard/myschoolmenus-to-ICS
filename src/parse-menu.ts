@@ -1,7 +1,5 @@
-import { AxiosResponse } from "axios";
 import {Block, Datum, MealViewerResponse} from "./types";
 
-import axios from 'axios';
 import ical from 'ical-generator';
 
 const yesterday = new Date();
@@ -14,8 +12,9 @@ const endDateString = new Date(endDate).toISOString().slice(0, 10);
 export const parseMenuAndGenerateIcs = async (schoolId: string, meal: 'Lunch' | 'Breakfast' = 'Lunch') => {
     const url = `https://api.mealviewer.com/api/v4/school/${schoolId}/${startDate}/${endDateString}/0`;
     try {
-        const response: AxiosResponse = await axios.get(url);
-        const mvResponse: MealViewerResponse = response.data;
+
+        // Fetch with fetch.
+        const mvResponse: MealViewerResponse = (await (await fetch(url)).json())
 
         const icalEvent = ical({
             name: `${mvResponse.physicalLocation.name} ${meal} Menu`,
