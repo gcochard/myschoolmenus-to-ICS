@@ -9,3 +9,4 @@ An ICS web service that accepts a school ID & returns an ICS calendar document d
 ## Reference URLs
 * https://schools.mealviewer.com/school/EisenhowerElementaryMN
 * https://api.mealviewer.com/api/v4/school/EisenhowerElementaryMN/2024-03-10/2024-04-09/0
+* [Work Journal](https://docs.google.com/document/d/1WbL6oGrfDUGhfj9yyIPLWi-ifBvxLtrbx18uoN-5q-8/edit)

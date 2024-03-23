@@ -69,8 +69,6 @@ export const parseMenuAndGenerateIcs = async (schoolId: string, meal: 'Lunch' | 
 						return line;
 					}).join('\n\n');
 
-					console.log(description)
-
 					icalEvent.createEvent({
 						start: new Date(dateStr),
 						end: new Date(dateStr),
@@ -92,7 +90,10 @@ export const parseMenuAndGenerateIcs = async (schoolId: string, meal: 'Lunch' | 
 
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-		// return new Response('Hello World!');
+
+		console.log("Request URL:", request.url)
+		
+		// TODO: Parse this out of the URL.
 		const schoolId = "EisenhowerElementaryMN";
 		const meal = "Lunch";
 
