@@ -1,5 +1,10 @@
 {
   "name": "mealcal",
+  "author": {
+    "name": "Jeffery Bennett",
+    "email": "me@meandmybadself.com"
+  },
+  "license": "MIT",
   "repository": {
     "url": "https://github.com/Meandmybadself/mealviewer-to-ICS"
   },

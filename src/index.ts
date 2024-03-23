@@ -70,11 +70,9 @@ export const parseMenuAndGenerateIcs = async (schoolId: string, meal: 'Lunch' | 
 						return line;
 					}).join('\n\n');
 
-					console.log(description)
-
 					icalEvent.createEvent({
 						start: new Date(dateStr),
-						end: new Date(dateStr),
+						allDay: true,
 						summary: `${meal} Menu`,
 						description,
 						location: 'Cafeteria'
@@ -94,11 +92,16 @@ export const parseMenuAndGenerateIcs = async (schoolId: string, meal: 'Lunch' | 
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 
-		console.log("Request URL:", request.url)
-		
-		// TODO: Parse this out of the URL.
-		const schoolId = "EisenhowerElementaryMN";
-		const meal = "Lunch";
+		const url = new URL(request.url);
+		const schoolId = url.searchParams.get('schoolId') || "EisenhowerElementaryMN";
+		const meal = url.searchParams.get('meal') as 'Lunch' | 'Breakfast' || 'Lunch';
+
+		if (!schoolId) {
+			return new Response("Missing schoolId parameter.", { status: 400 });
+		}
+		if (!['Lunch', 'Breakfast'].includes(meal)) {
+			return new Response("Invalid meal parameter. Must be 'Lunch' or 'Breakfast'.", { status: 400 });
+		}
 
 		try {
 			const icalData = await parseMenuAndGenerateIcs(schoolId, meal);
