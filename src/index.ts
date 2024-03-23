@@ -40,9 +40,11 @@ export const parseMenuAndGenerateIcs = async (schoolId: string, meal: 'Lunch' | 
 	const url = `https://api.mealviewer.com/api/v4/school/${schoolId}/${startDate}/${endDateString}/0`;
 	try {
 
+		console.log("Fetching data from:", url);
 		// Fetch with fetch.
 		const mvResponse: MealViewerResponse = (await (await fetch(url)).json())
 
+		console.log("Fetched data:", mvResponse)
 		const icalEvent = ical({
 			name: `${mvResponse.physicalLocation.name} ${meal} Menu`,
 			timezone: 'America/Chicago'
@@ -68,6 +70,8 @@ export const parseMenuAndGenerateIcs = async (schoolId: string, meal: 'Lunch' | 
 						}).join('\n');
 						return line;
 					}).join('\n\n');
+
+					console.log(description)
 
 					icalEvent.createEvent({
 						start: new Date(dateStr),
