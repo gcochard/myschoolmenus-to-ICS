@@ -29,23 +29,22 @@ import { Block, Datum, MealViewerResponse } from "./types";
 
 import ical from 'ical-generator';
 
-const yesterday = new Date();
-yesterday.setDate(yesterday.getDate() - 1);
-
-const startDate = yesterday.toISOString().slice(0, 10);
-const endDate = new Date(yesterday).setDate(yesterday.getDate() + 30);
-const endDateString = new Date(endDate).toISOString().slice(0, 10);
-
 export const parseMenuAndGenerateIcs = async (schoolId: string, meal: 'Lunch' | 'Breakfast' = 'Lunch') => {
+
+	const yesterday = new Date();
+	yesterday.setDate(yesterday.getDate() - 1);
+
+	const startDate = yesterday.toISOString().slice(0, 10);
+	const endDate = new Date(yesterday).setDate(yesterday.getDate() + 30);
+	const endDateString = new Date(endDate).toISOString().slice(0, 10);
+
 	const url = `https://api.mealviewer.com/api/v4/school/${schoolId}/${startDate}/${endDateString}/0`;
 	try {
 
-		console.log("Fetching data from:", url);
-		// Fetch with fetch.
-		const mvResponse: MealViewerResponse = (await (await fetch(url)).json())
+		const mvResponse: MealViewerResponse = (await (await fetch(url)).json()) as MealViewerResponse;
 
-		console.log("Fetched data:", mvResponse)
 		const icalEvent = ical({
+			ttl: 604800, // 1 week
 			name: `${mvResponse.physicalLocation.name} ${meal} Menu`,
 			timezone: 'America/Chicago'
 		});
