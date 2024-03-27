@@ -59,7 +59,6 @@ export const parseMenuAndGenerateIcs = async (schoolId: string, meal: 'Lunch' | 
 				const dateStr = datum?.[0]?.foodItemList.data[0]?.menu_Block_Date || "";
 				if (dateStr) {
 					const description = datum?.map((datum: Datum) => {
-						console.log('dn', datum.name)
 
 						let line = '';
 						
