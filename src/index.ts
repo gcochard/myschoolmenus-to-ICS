@@ -59,23 +59,33 @@ export const parseMenuAndGenerateIcs = async (schoolId: string, meal: 'Lunch' | 
 				const dateStr = datum?.[0]?.foodItemList.data[0]?.menu_Block_Date || "";
 				if (dateStr) {
 					const description = datum?.map((datum: Datum) => {
-						let line = datum.name + "\n";
+						console.log('dn', datum.name)
+
+						let line = '';
+						
+						if (datum.name.includes('Alternate')) {
+							line += "<b>Alternate:</b><br/>";
+						} else if (!datum.name.includes('Elementary')) {
+							line += datum.name + "<br/>";
+						}
+						
 						line += datum.foodItemList.data.map(item => {
 							let name = item.item_Name;
+							
 							if (item.item_Name_Line_2) {
-								name += "\n" + item.item_Name_Line_2;
+								name += item.item_Name_Line_2 + "<br/>"
 							}
 							return name;
-						}).join('\n');
+						}).filter(item => !!item).join('<br/>');
 						return line;
-					}).join('\n\n');
+					}).join('<br/><br/>');
 
+				
 					icalEvent.createEvent({
 						start: new Date(dateStr),
 						allDay: true,
 						summary: `${meal} Menu`,
-						description,
-						location: 'Cafeteria'
+						description
 					});
 
 					return icalEvent;

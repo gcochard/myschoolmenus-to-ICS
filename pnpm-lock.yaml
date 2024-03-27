@@ -1,7 +1,7 @@
 lockfileVersion: '6.0'
 
 settings:
-  autoInstallPeers: false
+  autoInstallPeers: true
   excludeLinksFromLockfile: false
 
 dependencies:
@@ -12,7 +12,7 @@ dependencies:
 devDependencies:
   '@cloudflare/vitest-pool-workers':
     specifier: ^0.1.0
-    version: 0.1.5(@cloudflare/workers-types@4.20240320.1)(vitest@1.3.0)
+    version: 0.1.5(@cloudflare/workers-types@4.20240320.1)(@vitest/runner@1.3.0)(@vitest/snapshot@1.3.0)(vitest@1.3.0)
   '@cloudflare/workers-types':
     specifier: ^4.20240320.1
     version: 4.20240320.1
@@ -34,13 +34,15 @@ packages:
       mime: 3.0.0
     dev: true
 
-  /@cloudflare/vitest-pool-workers@0.1.5(@cloudflare/workers-types@4.20240320.1)(vitest@1.3.0):
+  /@cloudflare/vitest-pool-workers@0.1.5(@cloudflare/workers-types@4.20240320.1)(@vitest/runner@1.3.0)(@vitest/snapshot@1.3.0)(vitest@1.3.0):
     resolution: {integrity: sha512-SYEEP8rPTjCydRH8M7C+R01rM7QJZQGmR5siTZlyE2SO2mmgN1r6F9t7dmIX5lgh8muZKf6LDWJC4YpOGaESgg==}
     peerDependencies:
       '@vitest/runner': 1.3.0
       '@vitest/snapshot': 1.3.0
       vitest: 1.3.0
     dependencies:
+      '@vitest/runner': 1.3.0
+      '@vitest/snapshot': 1.3.0
       birpc: 0.2.14
       cjs-module-lexer: 1.2.3
       devalue: 4.3.2
