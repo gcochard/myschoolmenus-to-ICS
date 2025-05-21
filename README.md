@@ -1,27 +1,27 @@
 🍽️ ➡️ 📅
 
-# Mealviewer-to-ICS
+# myschoolmenus-to-ICS
 
 ## Description
-A Cloudflare Worker web service that converts the Mealviewer API to an ICS calendar document for easy viewing in a calendar app.
+A Cloudflare Worker web service that converts the myschoolmenus API to an ICS calendar document for easy viewing in a calendar app.
 
 ## Problem
 I don't want to visit a website on a daily basis or print out a website to determine what my kids are eating for lunch.
 
 ## Request format
-https://mealcal.meandmybadself.com/
+https://mealcal.gregcochard.com/
 
 Example:
-https://mealcal.meandmybadself.com/?schoolId=EisenhowerElementaryMN&meal=Lunch
+https://mealcal.gregcochard.com/?districtId=136&menu=75181
 
 ### Arguments
-* `schoolId` - the Mealviewer school ID.  Default is `EisenhowerElementaryMN`.
-* `meal` - `Lunch` or `Breakfast`. Default is `Lunch`.
+* `districtId` - the myschoolmenus district ID.  Default is `136`.
+* `menu` - the myschoolmenus menu ID. Default is `75181`.
 
 ## Response Notes
-ICS has a TTL of one week.
+ICS has a TTL of one day.
 
-## Reference URLs
-* https://schools.mealviewer.com/school/EisenhowerElementaryMN
-* https://api.mealviewer.com/api/v4/school/EisenhowerElementaryMN/2024-03-10/2024-04-09/0
-* [Work Journal](https://docs.google.com/document/d/1WbL6oGrfDUGhfj9yyIPLWi-ifBvxLtrbx18uoN-5q-8/edit)
+## Credit
+Originally forked from [Meandmybadself/mealviewer-to-ICS](https://github.com/Meandmybadself/mealviewer-to-ICS)
+
+API reverse-engineered with the help of [andrewdefilippis/my-school-menus](https://github.com/andrewdefilippis/my-school-menus)
