@@ -1,144 +1,25 @@
-export interface MealViewerResponse {
-    physicalLocation: PhysicalLocation;
-    announcements: any[];
-    externalLinks: any[];
-    menuSchedules: MenuSchedule[];
-    schoolPriceInfo: any[];
-    dailyMenu: any[];
-    dailyMenus: DailyMenu[];
-    hasDisclaimer: boolean;
-    features: Feature[];
-    physicalLocationNutritionals: Nutritional[];
-    physicalLocationAllergens: Allergen[];
-    disclaimers: Disclaimer[];
-    cards: any[];
-    menuDataSourceId: number;
-}
-
-export interface DailyMenu {
-    name: string;
-    blocks: Block[];
-    items: Item[];
-    menuId: number;
-    orderId: number;
-}
-
-export interface Block {
-    id: number;
-    object: BlockObject | null;
-    blockName: BlockName;
-    scheduledDate: Date;
-    blackedOut: boolean;
-    noScheduleText: null;
-    cafeteriaLineList?: CafeteriaLineList;
-    orderId?: number;
-}
-
-export enum BlockName {
-    Breakfast = "Breakfast",
-    Lunch = "Lunch",
-}
-
-export interface CafeteriaLineList {
-    object: FoodItemListObject;
-    url: string;
-    hasMore: boolean;
+export interface MsmResponse {
     data: Datum[];
 }
 
 export interface Datum {
-    name: LocationNameEnum;
     id: number;
-    object: PurpleObject;
-    foodItemList: FoodItemList;
+    day: Date;
+    meal_id: number;
+    setting: string;
+    setting_original: string;
+    overwritten: boolean;
 }
 
-export interface FoodItemList {
-    object: FoodItemListObject;
-    url: string;
-    hasMore: boolean;
-    data: Item[];
+export interface Setting {
+    current_display: DisplayItem[];
 }
 
-export interface Item {
-    id: number;
-    servingSizeId: number;
-    serving_Size_Id: number;
-    portionQuantity: number;
-    portionSize: number;
-    portionUnit: PortionUnit;
-    calculatedPortionSize: number;
-    object: ItemObject;
-    menu_Name: MenuName | null;
-    menu_Id: number;
-    item_Order_Id: number;
-    block_Name: BlockName | null;
-    block_Id: number;
-    block_Type: BlockType | null;
-    menu_Block_Date: Date;
-    location_Id: number;
-    imageFileName: null;
-    location_Name: LocationNameEnum | null;
-    physical_Location_Name: LocationNameEnum | null;
-    item_Id: number;
-    item_Type: ItemType;
-    item_RatingLevel: number;
-    item_Type_Order_Id: number;
-    item_Name: string;
-    item_Name_Line_2: null | string;
-    block_Location_Status: BlockLocationStatus | null;
-    block_Order: number;
-    location_Order: number;
-    mvS_Visible: boolean;
-    description: null | string;
-    ingredients: null | string;
-    nutritionals: Nutritional[];
-    allergens: Allergen[];
-    badges: any[];
-    calories: null;
-    fat: null;
-    carbs: null;
-    whole_Grain: null;
-    mG_Cholst: number;
-    mG_Sodm: number;
-    g_Fiber: number;
-    mG_Iron: number;
-    mG_Calcm: number;
-    iu_Vit_A: number;
-    mG_Vit_C: number;
-    g_Protn: number;
-    g_Carb: number;
-    g_T_Fat: number;
-    g_S_Fat: number;
-    g_Tr_Fat: number;
-    meat: boolean;
-    grain: boolean;
-    fruit: boolean;
-    contains_Pork: boolean;
-    vegetarian: boolean;
-    local: boolean;
-    organic: boolean;
-    egg: boolean;
-    milk: boolean;
-    soy: boolean;
-    wheat: boolean;
-    shellfish: boolean;
-    peanut: boolean;
-    tree_Nuts: boolean;
-    fish: boolean;
-    price: number;
-    imageLabel: null;
-}
-
-export interface Allergen {
-    id: number;
-    cid: number;
-    codeName: CodeName | null;
-    itemId: number;
-    name: PhysicalLocationAllergenName;
-    physicalLocationId: number;
-    value: Value | null;
-    svg: SVG | null;
+export interface DisplayItem {
+    item: string;
+    weight: number;
+    name: string;
+    type: string;
 }
 
 export enum CodeName {
