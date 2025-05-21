@@ -7,6 +7,9 @@ compatibility_flags = ["nodejs_compat"]
 [observability.logs]
 enabled = false
 
+routes = [
+  { pattern = "mealcal.gregcochard.com", custom_domain = true }
+]
 
 
 
