@@ -23,7 +23,7 @@ export const parseMenuAndGenerateIcs = async (districtId: string, menuId: number
         const icalEvent = ical({
             ttl: 86400, // 1 day
             name: `Menu`,
-            timezone: 'America/LosAngeles'
+            timezone: 'America/Los_Angeles'
         });
 
         let numEvents = 0;
