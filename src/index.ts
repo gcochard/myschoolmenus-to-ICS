@@ -78,7 +78,7 @@ export default {
 
         const url = new URL(request.url);
         const districtId = url.searchParams.get('districtId') || 136;
-        const menu = url.searchParams.get('menu') || 75181;
+        const menu = url.searchParams.get('menu') || 109609;
 
         if (!districtId) {
             return new Response("Missing districtId parameter.", { status: 400 });
