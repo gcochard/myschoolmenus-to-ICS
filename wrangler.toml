@@ -18,6 +18,10 @@ routes = [
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
 # [vars]
 # MY_VARIABLE = "production_value"
+[vars]
+LUNCH_MENU = 109609
+BREAKFAST_MENU = 109595
+DEFAULT_DISTRICT = 136
 
 # Bind the Workers AI model catalog. Run machine learning models, powered by serverless GPUs, on Cloudflare’s global network
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#workers-ai
