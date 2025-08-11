@@ -77,8 +77,8 @@ export default {
     async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 
         const url = new URL(request.url);
-        const districtId = url.searchParams.get('districtId') || 136;
-        const menu = url.searchParams.get('menu') || 109609;
+        const districtId = url.searchParams.get('districtId') || env.DEFAULT_DISTRICT;
+        const menu = /\/breakfast/i.test(url.pathname) ? env.BREAKFAST_MENU : env.LUNCH_MENU;
 
         if (!districtId) {
             return new Response("Missing districtId parameter.", { status: 400 });
